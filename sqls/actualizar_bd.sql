@@ -31,6 +31,8 @@ PRIMARY KEY (codigoLiga)
 
 CREATE TABLE Entrenamiento (
 codigo INTEGER NOT NULL,
+distancia INTEGER NOT NULL,
+fechaEntrenamiento DATE NOT NULL,
 PRIMARY KEY (codigo)
 );
 
@@ -71,15 +73,15 @@ PRIMARY KEY (nombreCategoria)
 -- Table Tiene historial
 
 CREATE TABLE Tiene_historial (
-codigo INTEGER NOT NULL,
-Attribute1 INTEGER NOT NULL,
-PRIMARY KEY (codigo)
+codigoCorredor INTEGER NOT NULL,
+codigoEntrenamiento INTEGER NOT NULL,
+PRIMARY KEY (codigoCorredor, codigoEntrenamiento)
 );
 
 -- Add keys for table Tiene historial
 
-ALTER TABLE Tiene_historial ADD CONSTRAINT Relationship1 FOREIGN KEY (codigo) REFERENCES Corredor (codigoCorredor);
-ALTER TABLE Tiene_historial ADD CONSTRAINT Relationship2 FOREIGN KEY (Attribute1) REFERENCES Entrenamiento (codigo);
+ALTER TABLE Tiene_historial ADD CONSTRAINT Relationship1 FOREIGN KEY (codigoCorredor) REFERENCES Corredor (codigoCorredor);
+ALTER TABLE Tiene_historial ADD CONSTRAINT Relationship2 FOREIGN KEY (codigoEntrenamiento) REFERENCES Entrenamiento (codigo);
 
 -- Table Tiene tipo
 
@@ -201,16 +203,16 @@ INSERT INTO Participa (codigoCorredor, codigoEvento, nombreCategoria, tiempo) VA
 
 -- Tabla Entrenamiento
 
-INSERT INTO Entrenamiento (codigo) VALUES
-(1),
-(2),
-(3),
-(4),
-(5);
+INSERT INTO Entrenamiento (codigo, distancia, fechaEntrenamiento) VALUES
+(1, 5, '2023-04-01'),
+(2, 10, '2023-04-02'),
+(3, 15, '2023-04-03'),
+(4, 20, '2023-04-04'),
+(5, 25, '2023-04-05');
 
 -- Tabla Tiene_historial
 
-INSERT INTO Tiene_historial (codigo, Attribute1) VALUES
+INSERT INTO Tiene_historial (codigoCorredor, codigoEntrenamiento) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
@@ -234,3 +236,8 @@ INSERT INTO Tiene_tipo (codigo, Nombre) VALUES
 (3, 'Flexibilidad'),
 (4, 'Resistencia'),
 (5, 'Velocidad');
+
+ALTER TABLE Participa ADD numParticipacion INTEGER NOT NULL;
+UPDATE Participa SET numParticipacion = 1 WHERE codigoCorredor = 1 AND codigoEvento = 1;
+UPDATE Participa SET numParticipacion = 2 WHERE codigoCorredor = 2 AND codigoEvento = 1;
+UPDATE Participa SET numParticipacion = 3 WHERE codigoCorredor = 3 AND codigoEvento = 1;

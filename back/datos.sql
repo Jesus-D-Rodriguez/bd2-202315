@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-04-2023 a las 00:56:01
+-- Tiempo de generación: 04-05-2023 a las 03:51:51
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bd2`
+-- Base de datos: `p`
 --
 
 --
@@ -63,12 +63,12 @@ INSERT INTO `corredor` (`codigoCorredor`, `nombre`, `estatura`, `Peso`, `fechaNa
 -- Volcado de datos para la tabla `entrenamiento`
 --
 
-INSERT INTO `entrenamiento` (`codigo`) VALUES
-(1),
-(2),
-(3),
-(4),
-(5);
+INSERT INTO `entrenamiento` (`codigo`, `distancia`, `fechaEntrenamiento`) VALUES
+(1, 5, '2023-04-01'),
+(2, 10, '2023-04-02'),
+(3, 15, '2023-04-03'),
+(4, 20, '2023-04-04'),
+(5, 25, '2023-04-05');
 
 --
 -- Volcado de datos para la tabla `evento`
@@ -93,17 +93,17 @@ INSERT INTO `liga` (`codigoLiga`, `nombre`) VALUES
 -- Volcado de datos para la tabla `participa`
 --
 
-INSERT INTO `participa` (`codigoCorredor`, `codigoEvento`, `nombreCategoria`, `tiempo`) VALUES
-(1, 1, 'Juvenil', 45.5),
-(2, 1, 'Senior', 50.2),
-(3, 1, 'Master 30', 42.1),
-(4, 2, 'Master 40', 85.3),
-(5, 2, 'Master 50', 120),
-(6, 3, 'Juvenil', 20),
-(7, 3, 'Senior', 25),
-(8, 4, 'Master 30', 63.5),
-(9, 4, 'Master 40', 77.8),
-(10, 5, 'Senior', 180);
+INSERT INTO `participa` (`codigoCorredor`, `codigoEvento`, `nombreCategoria`, `tiempo`, `numParticipacion`) VALUES
+(1, 1, 'Juvenil', 45.5, 1),
+(2, 1, 'Senior', 50.2, 2),
+(3, 1, 'Master 30', 42.1, 3),
+(4, 2, 'Master 40', 85.3, 0),
+(5, 2, 'Master 50', 120, 0),
+(6, 3, 'Juvenil', 20, 0),
+(7, 3, 'Senior', 25, 0),
+(8, 4, 'Master 30', 63.5, 0),
+(9, 4, 'Master 40', 77.8, 0),
+(10, 5, 'Senior', 180, 0);
 
 --
 -- Volcado de datos para la tabla `representa`
@@ -120,7 +120,7 @@ INSERT INTO `representa` (`codigo`, `codigoLiga`, `codigoClub`) VALUES
 -- Volcado de datos para la tabla `tiene_historial`
 --
 
-INSERT INTO `tiene_historial` (`codigo`, `Attribute1`) VALUES
+INSERT INTO `tiene_historial` (`codigoCorredor`, `codigoEntrenamiento`) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
