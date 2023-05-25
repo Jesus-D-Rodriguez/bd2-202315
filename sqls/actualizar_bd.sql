@@ -16,6 +16,7 @@ nombre CHAR(50) NOT NULL,
 estatura FLOAT NOT NULL,
 Peso FLOAT NOT NULL,
 fechaNac DATE NOT NULL,
+genero CHAR(1) NOT NULL,
 PRIMARY KEY (codigoCorredor)
 );
 
@@ -31,7 +32,7 @@ PRIMARY KEY (codigoLiga)
 
 CREATE TABLE Entrenamiento (
 codigo INTEGER NOT NULL,
-distancia INTEGER NOT NULL,
+distanciaEntrenamiento INTEGER NOT NULL,
 fechaEntrenamiento DATE NOT NULL,
 PRIMARY KEY (codigo)
 );
@@ -60,6 +61,7 @@ CREATE TABLE Evento (
 codigoEvento INTEGER NOT NULL,
 nombre CHAR(50) NOT NULL,
 fecha DATE NOT NULL,
+distanciaEvento INT NOT NULL,
 PRIMARY KEY (codigoEvento)
 );
 
@@ -99,15 +101,15 @@ ALTER TABLE Tiene_tipo ADD CONSTRAINT Relationship9 FOREIGN KEY (Nombre) REFEREN
 -- Table Representa
 
 CREATE TABLE Representa (
-codigo INTEGER NOT NULL,
+codigoCorredor INTEGER NOT NULL,
 codigoLiga INTEGER NOT NULL,
 codigoClub INTEGER NOT NULL,
-PRIMARY KEY (codigo, codigoLiga)
+PRIMARY KEY (codigoCorredor, codigoLiga)
 );
 
 -- Add keys for table Representa
 
-ALTER TABLE Representa ADD CONSTRAINT Relationship17 FOREIGN KEY (codigo) REFERENCES Corredor (codigoCorredor);
+ALTER TABLE Representa ADD CONSTRAINT Relationship17 FOREIGN KEY (codigoCorredor) REFERENCES Corredor (codigoCorredor);
 ALTER TABLE Representa ADD CONSTRAINT Relationship18 FOREIGN KEY (codigoLiga) REFERENCES Liga (codigoLiga);
 ALTER TABLE Representa ADD CONSTRAINT Relationship19 FOREIGN KEY (codigoClub) REFERENCES Club (codigoClub);
 
@@ -134,17 +136,17 @@ ALTER TABLE Evento MODIFY codigoLiga INTEGER NULL;
 
 -- Tabla Corredor
 
-INSERT INTO Corredor (codigoCorredor, nombre, estatura, Peso, fechaNac) VALUES
-(1, 'Juan Perez', 1.75, 70, '1990-01-01'),
-(2, 'Maria Rodriguez', 1.60, 55, '1995-05-05'),
-(3, 'Carlos Sanchez', 1.85, 80, '1985-11-11'),
-(4, 'Laura Gomez', 1.70, 60, '1998-03-03'),
-(5, 'Pedro Hernandez', 1.80, 75, '1992-07-07'),
-(6, 'Ana Torres', 1.65, 58, '1993-09-09'),
-(7, 'Luisa Martinez', 1.68, 63, '1991-02-02'),
-(8, 'Jorge Garcia', 1.76, 73, '1988-04-04'),
-(9, 'Diego Fernandez', 1.90, 85, '1987-06-06'),
-(10, 'Sofia Ramirez', 1.62, 50, '1997-08-08');
+INSERT INTO Corredor (codigoCorredor, nombre, estatura, Peso, fechaNac, genero) VALUES
+(1, 'Juan Perez', 1.75, 70, '1990-01-01', 'M'),
+(2, 'Maria Rodriguez', 1.60, 55, '1995-05-05', 'F'),
+(3, 'Carlos Sanchez', 1.85, 80, '1985-11-11', 'M'),
+(4, 'Laura Gomez', 1.70, 60, '1998-03-03', 'F'),
+(5, 'Pedro Hernandez', 1.80, 75, '1992-07-07', 'M'),
+(6, 'Ana Torres', 1.65, 58, '1993-09-09', 'F'),
+(7, 'Luisa Martinez', 1.68, 63, '1991-02-02', 'F'),
+(8, 'Jorge Garcia', 1.76, 73, '1988-04-04', 'M'),
+(9, 'Diego Fernandez', 1.90, 85, '1987-06-06', 'M'),
+(10, 'Sofia Ramirez', 1.62, 50, '1997-08-08', 'F');
 
 -- Tabla Liga
 
@@ -154,11 +156,11 @@ INSERT INTO Liga (codigoLiga, nombre) VALUES
 
 -- Tabla Evento
 
-INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga) VALUES (1, 'Carrera de 10 km', '2023-05-01', 1);
-INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga) VALUES (2, 'Media maraton', '2023-05-02', 1);
-INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga) VALUES (3, 'Carrera de 5km', '2023-05-03', 2);
-INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga) VALUES (4, 'Carrera de 15km', '2023-05-04', NULL);
-INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga) VALUES (5, 'Maraton', '2023-05-05', NULL);
+INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga, distanciaEvento) VALUES (1, 'Carrera de 10 km', '2023-05-01', 1, 10);
+INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga, distanciaEvento) VALUES (2, 'Media maraton', '2023-05-02', 1, 5);
+INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga, distanciaEvento) VALUES (3, 'Carrera de 5km', '2023-05-03', 2, 8);
+INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga, distanciaEvento) VALUES (4, 'Carrera de 15km', '2023-05-04', NULL, 3);
+INSERT INTO Evento (codigoEvento, nombre, fecha, codigoLiga, distanciaEvento) VALUES (5, 'Maraton', '2023-05-05', NULL, 2);
 
 -- Tabla Categoria
 
@@ -180,7 +182,7 @@ INSERT INTO Club (codigoClub) VALUES
 
 -- Tabla Representa
 
-INSERT INTO Representa (codigo, codigoLiga, codigoClub) VALUES
+INSERT INTO Representa (codigoCorredor, codigoLiga, codigoClub) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
@@ -203,7 +205,7 @@ INSERT INTO Participa (codigoCorredor, codigoEvento, nombreCategoria, tiempo) VA
 
 -- Tabla Entrenamiento
 
-INSERT INTO Entrenamiento (codigo, distancia, fechaEntrenamiento) VALUES
+INSERT INTO Entrenamiento (codigo, distanciaEntrenamiento, fechaEntrenamiento) VALUES
 (1, 5, '2023-04-01'),
 (2, 10, '2023-04-02'),
 (3, 15, '2023-04-03'),

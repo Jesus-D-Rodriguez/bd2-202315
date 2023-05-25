@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2023 a las 03:51:51
+-- Tiempo de generación: 25-05-2023 a las 02:31:03
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `p`
+-- Base de datos: `ff`
 --
 
 --
@@ -47,23 +47,23 @@ INSERT INTO `club` (`codigoClub`) VALUES
 -- Volcado de datos para la tabla `corredor`
 --
 
-INSERT INTO `corredor` (`codigoCorredor`, `nombre`, `estatura`, `Peso`, `fechaNac`) VALUES
-(1, 'Juan Perez', 1.75, 70, '1990-01-01'),
-(2, 'Maria Rodriguez', 1.6, 55, '1995-05-05'),
-(3, 'Carlos Sanchez', 1.85, 80, '1985-11-11'),
-(4, 'Laura Gomez', 1.7, 60, '1998-03-03'),
-(5, 'Pedro Hernandez', 1.8, 75, '1992-07-07'),
-(6, 'Ana Torres', 1.65, 58, '1993-09-09'),
-(7, 'Luisa Martinez', 1.68, 63, '1991-02-02'),
-(8, 'Jorge Garcia', 1.76, 73, '1988-04-04'),
-(9, 'Diego Fernandez', 1.9, 85, '1987-06-06'),
-(10, 'Sofia Ramirez', 1.62, 50, '1997-08-08');
+INSERT INTO `corredor` (`codigoCorredor`, `nombre`, `estatura`, `Peso`, `fechaNac`, `genero`) VALUES
+(1, 'Juan Perez', 1.75, 70, '1990-01-01', 'M'),
+(2, 'Maria Rodriguez', 1.6, 55, '1995-05-05', 'F'),
+(3, 'Carlos Sanchez', 1.85, 80, '1985-11-11', 'M'),
+(4, 'Laura Gomez', 1.7, 60, '1998-03-03', 'F'),
+(5, 'Pedro Hernandez', 1.8, 75, '1992-07-07', 'M'),
+(6, 'Ana Torres', 1.65, 58, '1993-09-09', 'F'),
+(7, 'Luisa Martinez', 1.68, 63, '1991-02-02', 'F'),
+(8, 'Jorge Garcia', 1.76, 73, '1988-04-04', 'M'),
+(9, 'Diego Fernandez', 1.9, 85, '1987-06-06', 'M'),
+(10, 'Sofia Ramirez', 1.62, 50, '1997-08-08', 'F');
 
 --
 -- Volcado de datos para la tabla `entrenamiento`
 --
 
-INSERT INTO `entrenamiento` (`codigo`, `distancia`, `fechaEntrenamiento`) VALUES
+INSERT INTO `entrenamiento` (`codigo`, `distanciaEntrenamiento`, `fechaEntrenamiento`) VALUES
 (1, 5, '2023-04-01'),
 (2, 10, '2023-04-02'),
 (3, 15, '2023-04-03'),
@@ -74,12 +74,12 @@ INSERT INTO `entrenamiento` (`codigo`, `distancia`, `fechaEntrenamiento`) VALUES
 -- Volcado de datos para la tabla `evento`
 --
 
-INSERT INTO `evento` (`codigoEvento`, `nombre`, `fecha`, `codigoLiga`) VALUES
-(1, 'Carrera de 10 km', '2023-05-01', 1),
-(2, 'Media maraton', '2023-05-02', 1),
-(3, 'Carrera de 5km', '2023-05-03', 2),
-(4, 'Carrera de 15km', '2023-05-04', NULL),
-(5, 'Maraton', '2023-05-05', NULL);
+INSERT INTO `evento` (`codigoEvento`, `nombre`, `fecha`, `distanciaEvento`, `codigoLiga`) VALUES
+(1, 'Carrera de 10 km', '2023-05-01', 10, 1),
+(2, 'Media maraton', '2023-05-02', 5, 1),
+(3, 'Carrera de 5km', '2023-05-03', 8, 2),
+(4, 'Carrera de 15km', '2023-05-04', 3, NULL),
+(5, 'Maraton', '2023-05-05', 2, NULL);
 
 --
 -- Volcado de datos para la tabla `liga`
@@ -109,7 +109,7 @@ INSERT INTO `participa` (`codigoCorredor`, `codigoEvento`, `nombreCategoria`, `t
 -- Volcado de datos para la tabla `representa`
 --
 
-INSERT INTO `representa` (`codigo`, `codigoLiga`, `codigoClub`) VALUES
+INSERT INTO `representa` (`codigoCorredor`, `codigoLiga`, `codigoClub`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
