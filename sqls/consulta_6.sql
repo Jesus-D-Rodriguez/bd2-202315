@@ -1,6 +1,6 @@
 SET @codigoClub = 1;
-SELECT DISTINCT Corredor.nombre
+SELECT DISTINCT Corredor.codigoCorredor
 FROM Corredor
-INNER JOIN Representa ON Corredor.codigoCorredor = Representa.codigo
+INNER JOIN Representa ON Corredor.codigoCorredor = Representa.codigoCorredor
 INNER JOIN Participa ON Corredor.codigoCorredor = Participa.codigoCorredor
 WHERE Representa.codigoClub = @codigoClub;
