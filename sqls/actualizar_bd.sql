@@ -243,3 +243,4 @@ ALTER TABLE Participa ADD numParticipacion INTEGER NOT NULL;
 UPDATE Participa SET numParticipacion = 1 WHERE codigoCorredor = 1 AND codigoEvento = 1;
 UPDATE Participa SET numParticipacion = 2 WHERE codigoCorredor = 2 AND codigoEvento = 1;
 UPDATE Participa SET numParticipacion = 3 WHERE codigoCorredor = 3 AND codigoEvento = 1;
+ALTER TABLE Participa ADD posicion_llegada INT;
