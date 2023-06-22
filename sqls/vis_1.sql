@@ -1,0 +1,3 @@
+CREATE USER 'usr_sitio_web_27731947' IDENTIFIED BY '27731947';
+GRANT SELECT ON bd2_202325_27731947.* TO 'usr_sitio_web_27731947';
+GRANT INSERT, UPDATE ON bd2_202325_27731947.entrenamiento TO 'usr_sitio_web_27731947'@'serverweb';
